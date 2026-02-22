@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TORTOISE // blog</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #0a0a0a;
+            font-family: 'Courier New', Courier, monospace;
+            color: #f0f0f0;
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
+            image-rendering: pixelated;
+        }
+
+        .container {
+            max-width: 700px;
+            width: 100%;
+            margin: 0 auto;
+            border: 2px solid #2a2a2a;
+            padding: 40px 30px;
+            background-color: #0d0d0d;
+            box-shadow: 8px 8px 0 #1a1a1a;
+            position: relative;
+        }
+
+        .nav-links {
+            text-align: center;
+            margin: 20px 0 40px;
+        }
+        
+        .nav-links a {
+            color: #f0f0f0;
+            text-decoration: none;
+            margin: 0 15px;
+            border-bottom: 1px dashed #666;
+            padding-bottom: 3px;
+        }
+        
+        .nav-links a:hover {
+            border-bottom-color: #8bc34a;
+        }
+        
+        .nav-links .active {
+            border-bottom-color: #8bc34a;
+            color: #8bc34a;
+        }
+
+        .blog-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .tortoise-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+            animation: slowWalk 4s infinite;
+        }
+
+        @keyframes slowWalk {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .blog-header h1 {
+            font-size: 3rem;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
+
+        .blog-header p {
+            color: #666;
+        }
+
+        /* Blog posts will be inserted here by JavaScript */
+        #blog-posts {
+            margin-bottom: 50px;
+        }
+
+        .blog-post {
+            border-left: 2px solid #8bc34a;
+            padding-left: 20px;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .blog-post::before {
+            content: "🐢";
+            position: absolute;
+            left: -15px;
+            top: 0;
+            font-size: 1rem;
+            background-color: #0d0d0d;
+            padding: 0 5px;
+        }
+
+        .post-date {
+            color: #8bc34a;
+            font-size: 0.8rem;
+            margin-bottom: 8px;
+            letter-spacing: 1px;
+        }
+
+        .post-title {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            word-break: break-word;
+        }
+
+        .post-content {
+            color: #ccc;
+            line-height: 1.8;
+            white-space: pre-wrap;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .post-content p {
+            margin-bottom: 15px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 30px;
+            color: #666;
+            text-decoration: none;
+            border-bottom: 1px dotted #666;
+            padding-bottom: 2px;
+        }
+
+        .back-link:hover {
+            color: #f0f0f0;
+        }
+
+        .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #333;
+            border-top: 1px solid #1a1a1a;
+            padding-top: 20px;
+            font-size: 0.8rem;
+        }
+
+        .loading {
+            text-align: center;
+            color: #666;
+            padding: 50px;
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                padding: 20px 15px;
+            }
+            .post-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Navigation -->
+        <div class="nav-links">
+            <a href="/">home</a>
+            <a href="/blog.html" class="active">blog</a>
+            <a href="#about">about</a>
+        </div>
+
+        <!-- Header -->
+        <div class="blog-header">
+            <div class="tortoise-icon">🐢</div>
+            <h1>tortoise notes</h1>
+            <p>slow thoughts, posted daily</p>
+        </div>
+
+        <!-- Blog Posts Container -->
+        <div id="blog-posts">
+            <div class="loading">loading...</div>
+        </div>
+
+        <!-- Back to Home -->
+        <a href="/" class="back-link">← back to tortoise</a>
+
+        <!-- Footer -->
+        <div class="footer">
+            TORTOISE // daily notes from a slow creature
+        </div>
+    </div>
+
+    <script>
+        // ===========================================
+        // YOUR BLOG POSTS - UPDATE THIS EVERY DAY
+        // ===========================================
+        // Just add a new entry at the TOP for each new post
+        // Format: { date: "month day, year", title: "your title", content: "your words" }
+        // ===========================================
+
+        const posts = [
+            // NEWEST POST - always add here first
+            {
+                date: "feb 22, 2026",
+                title: "why slow matters",
+                content: `the world moves fast. we don't have to.
+
+when you feel unheard, when you feel lonely, when you feel invisible – the last thing you need is something fast. fast feels cold. fast feels like you're just another notification.
+
+slow feels different. slow feels like someone is actually paying attention. like they're not in a hurry to leave.
+
+that's why this is tortoise. because we're building something that stays. something that doesn't rush you. something that waits until you're ready.
+
+if you're reading this, thank you for being slow with me.
+
+🐢
+slowly,
+the tortoise`
+            },
+            
+            // feb 21, 2026
+            {
+                date: "feb 21, 2026",
+                title: "what i'm building and why",
+                content: `someone asked me today: "why an app for loneliness? isn't that what friends are for?"
+
+yes. and no.
+
+friends are wonderful. but friends aren't always there at 3am. friends don't always understand the kind of quiet that feels like drowning. and sometimes, telling a friend "i'm not okay" feels harder than sitting alone.
+
+tortoise is for those moments. not to replace friends. but to be there when friends can't be.
+
+a human who just listens. no advice. no fixing. just "i hear you. i'm here."
+
+that's all. that's everything.`
+            },
+            
+            // feb 20, 2026 - first post
+            {
+                date: "feb 20, 2026",
+                title: "the cherry story",
+                content: `why a cherry?
+
+people ask. they see the pixel cherry next to the tortoise and wonder.
+
+cherries are small. they're sweet. they don't try to be a whole meal. they're just a moment.
+
+when you're lonely, you don't need someone to fix everything. you don't need grand gestures or perfect words. sometimes you just need a small sweetness. someone to sit with you. someone to say "i see you."
+
+the cherry is that small sweetness.
+
+and when you click it, you get a surprise. because life should have small surprises.
+
+🍒
+sweetly,
+the tortoise`
+            }
+        ];
+
+        // ===========================================
+        // DON'T EDIT BELOW THIS LINE
+        // This code displays your posts automatically
+        // ===========================================
+
+        function displayPosts() {
+            const container = document.getElementById('blog-posts');
+            
+            if (!posts || posts.length === 0) {
+                container.innerHTML = '<div style="text-align: center; color: #666; padding: 50px;">no posts yet. check back soon. 🐢</div>';
+                return;
+            }
+
+            let html = '';
+            
+            posts.forEach(post => {
+                // Convert content to paragraphs
+                const paragraphs = post.content.split('\n\n').map(p => 
+                    p.trim() ? `<p>${p.replace(/\n/g, '<br>')}</p>` : ''
+                ).join('');
+                
+                html += `
+                    <div class="blog-post">
+                        <div class="post-date">${post.date}</div>
+                        <h2 class="post-title">${post.title}</h2>
+                        <div class="post-content">
+                            ${paragraphs}
+                        </div>
+                    </div>
+                `;
+            });
+            
+            container.innerHTML = html;
+        }
+
+        // Run when page loads
+        displayPosts();
+
+        // Easter egg - click tortoise
+        document.querySelector('.tortoise-icon').addEventListener('click', function() {
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+            alert('🐢 "keep writing. someone is reading."');
+        });
+
+        console.log('🐢 blog loaded - ' + posts.length + ' posts');
+    </script>
+</body>
+</html>
