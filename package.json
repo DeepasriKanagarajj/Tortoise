@@ -1,0 +1,8 @@
+{
+  "name": "tortoise",
+  "version": "1.0.0",
+  "description": "Tortoise - slow & steady support",
+  "dependencies": {
+    "@neondatabase/serverless": "^0.6.0"
+  }
+}
