@@ -458,24 +458,29 @@
         </div>
 
         <!-- Signup Section -->
-        <div class="signup-section">
-            <div class="signup-prompt">
-                > want to feel less alone?.
-            </div>
-            
-            <form id="signup-form" class="form-group">
-                <input type="email" id="email-input" placeholder="your@email.com" required>
-                <button type="submit" id="submit-btn">[ 🐢 tell me more ]</button>
-            </form>
-            
-            <div id="success-message" class="success-message">
-                > thank you. you'll hear from us soon. 🐢
-            </div>
-            
-            <div class="small-note">
-                > no spam. just the signal. maybe a cherry.
-            </div>
-        </div>
+<div class="signup-section">
+    <div class="signup-prompt">
+        > want to feel less alone?
+    </div>
+    
+    <form action="https://formsubmit.co/devakanagaraj@atomicmail.io" method="POST" class="form-group">
+        <!-- FormSubmit configuration - these stay hidden -->
+        <input type="hidden" name="_subject" value="🐢 New Tortoise Signup!">
+        <input type="hidden" name="_next" value="https://tortoise.vercel.app/thank-you.html">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="box">
+        
+        <!-- Email input - make sure name="email" -->
+        <input type="email" name="email" placeholder="your@email.com" required>
+        
+        <!-- Funny button -->
+        <button type="submit">🍒 tell me more</button>
+    </form>
+    
+    <div class="small-note">
+        > no spam. just slow, honest thoughts.
+    </div>
+</div>
 
         <!-- Footer -->
         <div class="footer">
