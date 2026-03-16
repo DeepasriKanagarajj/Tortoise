@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TORTOISE // about deva</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=VT323&display=swap');
+
+        :root {
+            --black: #060606;
+            --panel: #0d0d0d;
+            --border: #1e1e1e;
+            --green: #7fff00;
+            --green-dim: #4a9900;
+            --red: #ff3c3c;
+            --white: #f0f0f0;
+            --dim: #555;
+            --dimmer: #2a2a2a;
+            --cherry: #ff3c3c;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--black);
+            font-family: 'Share Tech Mono', 'Courier New', monospace;
+            color: var(--white);
+            line-height: 1.8;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.07) 2px, rgba(0,0,0,0.07) 4px);
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 680px;
+            margin: 0 auto;
+            border: 1px solid var(--border);
+            padding: 50px 40px;
+            background: var(--panel);
+            box-shadow: 6px 6px 0 var(--dimmer), 12px 12px 0 #111;
+            position: relative;
+        }
+
+        .px { position: absolute; width: 8px; height: 8px; background: var(--green); opacity: 0.5; }
+        .px-tl { top: -1px; left: -1px; }
+        .px-tr { top: -1px; right: -1px; }
+        .px-bl { bottom: -1px; left: -1px; }
+        .px-br { bottom: -1px; right: -1px; }
+
+        .status-bar {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.7rem;
+            color: var(--dim);
+            letter-spacing: 2px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--dimmer);
+            margin-bottom: 40px;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 6px; height: 6px;
+            background: var(--green);
+            animation: blink 1.2s step-end infinite;
+            margin-right: 6px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            margin-bottom: 50px;
+        }
+
+        .nav a {
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: all 0.15s;
+        }
+
+        .nav a:hover, .nav a.active {
+            color: var(--green);
+            border-bottom-color: var(--green);
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .tortoise-icon {
+            font-size: 60px;
+            display: block;
+            margin-bottom: 12px;
+            animation: slowPulse 5s ease-in-out infinite;
+        }
+
+        @keyframes slowPulse {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        .page-title {
+            font-family: 'VT323', monospace;
+            font-size: 4rem;
+            letter-spacing: 8px;
+            color: var(--white);
+            text-shadow: 2px 2px 0 var(--green-dim);
+        }
+
+        .page-sub {
+            font-size: 0.75rem;
+            color: var(--dim);
+            letter-spacing: 3px;
+            margin-top: 6px;
+        }
+
+        /* Story sections */
+        .chapter {
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .chapter-label {
+            font-size: 0.65rem;
+            color: var(--green);
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+        }
+
+        .chapter p {
+            color: #aaa;
+            margin-bottom: 18px;
+            padding-left: 20px;
+            border-left: 1px solid var(--dimmer);
+        }
+
+        .chapter p .hl {
+            color: var(--white);
+            font-weight: bold;
+        }
+
+        .chapter p .hl-red {
+            color: var(--cherry);
+        }
+
+        .chapter p .hl-green {
+            color: var(--green);
+        }
+
+        /* Pull quote */
+        .pull-quote {
+            border: 1px dashed var(--dimmer);
+            padding: 24px 28px;
+            margin: 30px 0;
+            background: #080808;
+            position: relative;
+            text-align: center;
+        }
+
+        .pull-quote::before {
+            content: "[ TRANSMISSION ]";
+            position: absolute;
+            top: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--panel);
+            padding: 0 10px;
+            font-size: 0.6rem;
+            color: var(--cherry);
+            letter-spacing: 3px;
+        }
+
+        .pull-quote p {
+            font-size: 1.05rem;
+            color: var(--white);
+            line-height: 1.8;
+            border: none;
+            padding: 0;
+        }
+
+        /* Divider */
+        .divider {
+            text-align: center;
+            margin: 40px 0;
+            color: var(--dimmer);
+            font-size: 0.7rem;
+            letter-spacing: 6px;
+        }
+
+        /* Manifesto block */
+        .manifesto {
+            background: #080808;
+            border: 1px solid var(--dimmer);
+            border-left: 3px solid var(--green);
+            padding: 28px 28px 28px 24px;
+            margin: 40px 0;
+        }
+
+        .manifesto p {
+            color: #ccc;
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+
+        .manifesto p:last-child { margin-bottom: 0; }
+
+        .manifesto .big {
+            font-family: 'VT323', monospace;
+            font-size: 1.6rem;
+            color: var(--green);
+            letter-spacing: 2px;
+            display: block;
+            margin: 16px 0;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 50px;
+            color: var(--dim);
+            font-size: 0.85rem;
+        }
+
+        .signature span {
+            color: var(--green);
+            font-size: 1.1rem;
+            display: block;
+            margin-top: 4px;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--dim);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            border-bottom: 1px dotted var(--dimmer);
+            padding-bottom: 2px;
+            transition: all 0.15s;
+        }
+
+        .back-link:hover { color: var(--white); border-bottom-color: var(--white); }
+
+        .footer {
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid var(--dimmer);
+            font-size: 0.65rem;
+            color: #2a2a2a;
+            letter-spacing: 2px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        @media (max-width: 520px) {
+            .container { padding: 30px 20px; }
+            .page-title { font-size: 3rem; }
+            .footer { flex-direction: column; gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="px px-tl"></div>
+    <div class="px px-tr"></div>
+    <div class="px px-bl"></div>
+    <div class="px px-br"></div>
+
+    <div class="status-bar">
+        <span><span class="status-dot"></span>SIGNAL ACTIVE</span>
+        <span>ABOUT.LOG</span>
+        <span>TORTOISE v0.1</span>
+    </div>
+
+    <nav class="nav">
+        <a href="/">home</a>
+        <a href="/blog.html">blog</a>
+        <a href="/about.html" class="active">about</a>
+    </nav>
+
+    <div class="page-header">
+        <span class="tortoise-icon">🐢</span>
+        <div class="page-title">ABOUT</div>
+        <div class="page-sub">>> the story behind the signal</div>
+    </div>
+
+    <!-- Chapter 1 -->
+    <div class="chapter">
+        <div class="chapter-label">>> CHAPTER_01 // TALLINN</div>
+        <p>my name is <span class="hl">deva</span>.</p>
+        <p>i lived in <span class="hl">tallinn</span> for a few years. quiet forests. long winters. the sound of snow under your feet and nothing else for miles.</p>
+        <p>it was beautiful. and it was <span class="hl-red">isolating</span> in ways i didn't have the words for yet.</p>
+        <p>i was living inside something i didn't have a name for. an <span class="hl-red">abusive relationship</span> i thought was normal. i thought love was supposed to hurt. i thought staying was strength. i thought if i just tried harder—</p>
+        <p>i didn't see it. not clearly. not until much later.</p>
+    </div>
+
+    <div class="divider">🍒 &nbsp;&nbsp; 🐢 &nbsp;&nbsp; 🍒</div>
+
+    <!-- Chapter 2 -->
+    <div class="chapter">
+        <div class="chapter-label">>> CHAPTER_02 // FLORENCE</div>
+        <p>then came a trip to <span class="hl">florence</span>. i was trying to breathe. trying to escape the weight i'd been carrying.</p>
+        <p>i met a <span class="hl">stranger</span>. a beautiful one. we talked for a few hours. they said something i have never forgotten.</p>
+
+        <div class="pull-quote">
+            <p>"love isn't supposed to make you small.<br>it's supposed to make you feel like you can breathe."</p>
+        </div>
+
+        <p>i never saw them again. but that conversation <span class="hl-green">cracked something open</span>.</p>
+        <p>i started to understand that feeling safe, feeling seen, feeling like you don't have to pretend — that's not too much to ask for. that's the <span class="hl">minimum</span>.</p>
+    </div>
+
+    <div class="divider">🍒 &nbsp;&nbsp; 🐢 &nbsp;&nbsp; 🍒</div>
+
+    <!-- Chapter 3: Why Tortoise -->
+    <div class="chapter">
+        <div class="chapter-label">>> CHAPTER_03 // WHY TORTOISE EXISTS</div>
+
+        <div class="manifesto">
+            <p>because <span style="color:var(--white)">no one</span> deserves to carry something heavy with nowhere to put it down.</p>
+            <p>because your family might not understand. your friends are busy. and sometimes saying "i'm not okay" out loud feels harder than disappearing.</p>
+            <span class="big">BUT HUMANS EXIST WHO WILL MAKE YOU FEEL LIKE YOU MATTER.</span>
+            <p>sometimes they're strangers on a train. sometimes they're someone you'll never see again. sometimes they're someone who picks up because they chose to show up today.</p>
+            <p>they exist. <span style="color:var(--green)">you exist.</span> <span style="color:var(--white)">you matter.</span></p>
+        </div>
+
+        <p>tortoise is for the moments when you need to hear that. from a human. not an algorithm. not a script. just someone who listens.</p>
+        <p>no fixing. no judgment. no "have you tried meditating?"</p>
+        <p>just: <span class="hl-green">"i hear you. i'm here. you're not alone."</span></p>
+        <p>i'm building this slowly. like a tortoise. because the things that last are built with time — not noise.</p>
+    </div>
+
+    <div class="signature">
+        made with more than code.<br>
+        <span>🐢 deva</span>
+        <span style="color:var(--dim); font-size:0.75rem; margin-top:4px; display:block;">bangkok, thailand</span>
+    </div>
+
+    <a href="/" class="back-link">← back to tortoise</a>
+
+    <div class="footer">
+        <span>TORTOISE // slow & steady is not alone</span>
+        <span>ABOUT.LOG</span>
+    </div>
+</div>
+
+<script>
+    document.querySelector('.tortoise-icon').addEventListener('click', function() {
+        const msgs = ['🐢 "your story matters."', '🐢 "keep going. slow is enough."', '🐢 "you are seen here."'];
+        const msg = msgs[Math.floor(Math.random() * msgs.length)];
+        this.style.transform = 'scale(1.3)';
+        setTimeout(() => this.style.transform = '', 300);
+        alert(msg);
+    });
+    console.log('%c🐢 about page // deva\'s story', 'color: #7fff00; font-family: monospace;');
+</script>
+</body>
+</html>
