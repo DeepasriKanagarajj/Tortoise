@@ -46,7 +46,15 @@
   }
 
   /* LAYOUT */
-  .container { max-width: 680px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 0 60px; position: relative; z-index: 1; }
+
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: start;
+  }
+  .two-col-left { position: sticky; top: 80px; }
 
   /* NAV */
   nav {
@@ -59,9 +67,9 @@
     z-index: 100;
   }
   .nav-inner {
-    max-width: 680px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -359,9 +367,9 @@
     margin-top: 80px;
   }
   .footer-inner {
-    max-width: 680px;
+    max-width: 1400px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 0 60px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -414,9 +422,28 @@
   }
   .counter-label { font-size: 10px; color: var(--fg3); letter-spacing: 0.1em; margin-top: 4px; }
 
+  /* VERTICAL DIVIDER between columns */
+  .two-col-left {
+    border-right: 1px solid var(--border);
+    padding-right: 80px;
+  }
+  .two-col-right {
+    padding-left: 0;
+  }
+
+  @media (max-width: 1024px) {
+    .container { padding: 0 32px; }
+    .two-col { grid-template-columns: 1fr; gap: 0; }
+    .two-col-left { border-right: none; padding-right: 0; position: static; }
+    .nav-inner { padding: 0 32px; }
+    .footer-inner { padding: 0 32px; }
+  }
   @media (max-width: 500px) {
+    .container { padding: 0 20px; }
     .hero { padding: 48px 0 40px; }
     .feature-item { padding: 16px; }
+    .nav-inner { padding: 0 20px; }
+    .footer-inner { padding: 0 20px; }
   }
 </style>
 </head>
@@ -431,7 +458,10 @@
 
 <main>
 <div class="container">
+<div class="two-col">
 
+  <!-- LEFT COLUMN: HERO STICKY -->
+  <div class="two-col-left">
   <!-- HERO -->
   <section class="hero">
     <div class="hero-eyebrow">BANGKOK · EST. 2025 · MENTAL WELLNESS · PRIVATE</div>
@@ -458,8 +488,10 @@
       </div>
     </div>
   </section>
+  </div><!-- end left col -->
 
-  <hr class="divider">
+  <!-- RIGHT COLUMN: SCROLLABLE CONTENT -->
+  <div class="two-col-right">
 
   <!-- MANIFESTO -->
   <section class="fade-in">
@@ -687,6 +719,9 @@
       </p>
     </div>
   </section>
+
+  </div><!-- end right col -->
+</div><!-- end two-col -->
 
 </div>
 </main>
