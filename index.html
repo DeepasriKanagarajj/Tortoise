@@ -76,22 +76,12 @@
   }
   .nav-logo { font-size: 11px; letter-spacing: 0.15em; color: var(--fg2); }
   .nav-logo span { color: var(--cherry2); }
-  .nav-status {
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    color: var(--gold2);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .nav-status::before {
-    content: '';
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--gold2);
-    animation: pulse 2s ease-in-out infinite;
-  }
-  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+  .nav-links { display: flex; align-items: center; gap: 28px; }
+  .nav-link { font-size: 10px; letter-spacing: 0.15em; color: var(--fg3); text-decoration: none; text-transform: uppercase; transition: color 0.2s; }
+  .nav-link:hover { color: var(--fg2); }
+  .nav-link.active { color: var(--fg); }
+  .nav-link-cta { color: var(--cherry2) !important; border: 1px solid rgba(192,57,43,0.3); padding: 6px 14px; transition: border-color 0.2s, background 0.2s; }
+  .nav-link-cta:hover { border-color: var(--cherry2); background: rgba(192,57,43,0.06); }
 
   /* HERO */
   .hero { padding: 80px 0 60px; }
@@ -452,7 +442,12 @@
 <nav>
   <div class="nav-inner">
     <div class="nav-logo">🐢 TRT // <span>TORTOISE</span></div>
-    <div class="nav-status">ACCEPTING APPLICATIONS</div>
+    <div class="nav-links">
+      <a href="index.html" class="nav-link active">home</a>
+      <a href="blog.html" class="nav-link">blog</a>
+      <a href="about.html" class="nav-link">about</a>
+      <a href="index.html#apply" class="nav-link nav-link-cta">apply →</a>
+    </div>
   </div>
 </nav>
 
